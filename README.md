@@ -30,8 +30,6 @@ When a user logs in with Magic, they'll remain authenticated for 7 days until ha
 
 _Note: even though we’re relying on our backend to tell if the user is logged in, they will still be authenticated with Magic for 7 days after logging in (unless they explicitly logout before then)._
 
-![magic-jwt-flow](/images/guides/jwt/jwt-flow.png)
-
 With this approach, you can set the JWT and cookie to expire in 15 minutes, one month, or whatever is best for your app. And after the user logs in, since Magic is no longer relied upon, all we need to do is verify the cookie and JWT to know the user's session is valid.
 
 ## What are JSON Web Tokens
@@ -132,8 +130,6 @@ const Login = () => {
 In our `/api/login` route, we first need to validate the auth token provided by Magic, and then use it to grab information about the user. That information is what will be stored inside the JWT payload, which itself will be stored inside a cookie, and automatically sent to our server on subsequent requests.
 
 Example of the stored cookie:
-
-![cookie-img](/images/guides/jwt/cookie.png)
 
 ```js
 export default async function login(req, res) {
